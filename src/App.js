@@ -1,23 +1,28 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Content from './components/Content';
+import Header from './components/Header';
+import Ticket from './components/Ticket';
+
+
 
 function App() {
+
+  const[isVisible, setIsVisible ]= useState(true);
+
+ 
+  const handleClickTicket=()=>{
+    console.log(isVisible)
+    setIsVisible(false);
+    console.log(isVisible);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-full  bg-white">
+      {isVisible && <Header headerItems="🡠" />}
+      {isVisible && <Content onClick={handleClickTicket} />}
+      {!isVisible && <Header headerItems=" 🡠   2 QR Tickets" />}
+      {!isVisible && <Ticket />}
     </div>
   );
 }
